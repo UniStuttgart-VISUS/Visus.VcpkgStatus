@@ -1,18 +1,47 @@
+// <copyright file="Programme.cs" company="Visualisierungsinstitut der Universität Stuttgart">
+// Copyright © 2024 Visualisierungsinstitut der Universität Stuttgart.
+// Licenced under the MIT licence. See LICENCE.txt.
+// </copyright>
+// <author>Christoph Müller</author>
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Visus.VcpkgStatus.Options;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add structured options.
+builder.Services.Configure<AppearenceOptions>(o => {
+    builder.Configuration.GetSection(AppearenceOptions.SectionName).Bind(o);
+});
+builder.Services.Configure<CachingOptions>(o => {
+    builder.Configuration.GetSection(CachingOptions.SectionName).Bind(o);
+});
+builder.Services.Configure<RequestOptions>(o => {
+    builder.Configuration.GetSection(RequestOptions.SectionName).Bind(o);
+});
 
+// Add services to the container.
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMemoryCache();
+builder.Services.AddHttpClient("PortClient")
+    .AddStandardResilienceHandler();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwagger(o => {
+        o.RouteTemplate = "/_swagger/{documentName}/swagger.json";
+    });
+    app.UseSwaggerUI(o => {
+        o.RoutePrefix = "_swagger";
+    });
 }
 
 app.UseHttpsRedirection();

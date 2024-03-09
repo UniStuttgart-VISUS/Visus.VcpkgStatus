@@ -1,6 +1,6 @@
 @Visus.VcpkgStatus_HostAddress = http://localhost:5136
 
-GET {{Visus.VcpkgStatus_HostAddress}}/weatherforecast/
+GET {{Visus.VcpkgStatus_HostAddress}}/datraw
 Accept: application/json
 
 ###
