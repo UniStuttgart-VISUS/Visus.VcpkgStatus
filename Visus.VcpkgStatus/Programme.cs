@@ -34,6 +34,13 @@ builder.Services.AddHttpClient("PortClient")
 
 var app = builder.Build();
 
+
+// Configure PathBase. This must be first!
+var pathBase = builder.Configuration["PathBase"];
+if (!string.IsNullOrWhiteSpace(pathBase)) {
+    app.UsePathBase(pathBase);
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
     app.UseSwagger(o => {

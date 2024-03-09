@@ -84,25 +84,23 @@ namespace Visus.VcpkgStatus.DataModels {
             // End of secondary colour box.
             var secondaryEnd = versionBegin + versionSize + spacing;
 
-            return
-$"""
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<svg xmlns="http://www.w3.org/2000/svg"
-    style="shape-rendering: geometricPrecision; image-rendering: optimizeQuality; fill-rule: evenodd; clip-rule: evenodd"
-    width="163"
-    height="{appearence.Height}"
-    fill="None">
-    <g font-family="{string.Join(",", appearence.FontFamily)}" font-size="{appearence.FontSize}" fill="#000000">
-        <rect x="{primaryBegin.ToString(CultureInfo.InvariantCulture)}" y="0" height="{appearence.Height.ToString(CultureInfo.InvariantCulture)}" width="{(primaryEnd - primaryBegin).ToString(CultureInfo.InvariantCulture)}" rx="2.5" ry="2.5" stroke-width="0" fill="{appearence.PrimaryBackground}" />
-        <rect x="{(primaryEnd - 2.5).ToString(CultureInfo.InvariantCulture)}" y="0" height="{appearence.Height.ToString(CultureInfo.InvariantCulture)}" width="2.5" stroke-width="0" fill="{appearence.PrimaryBackground}" />
-        <rect x="{primaryEnd.ToString(CultureInfo.InvariantCulture)}" y="0" height="{appearence.Height.ToString(CultureInfo.InvariantCulture)}" width="{(secondaryEnd - primaryEnd).ToString(CultureInfo.InvariantCulture)}" rx="2.5" ry="2.5" stroke-width="0" fill="{appearence.SecondaryBackground}" />
-        <rect x="{primaryEnd.ToString(CultureInfo.InvariantCulture)}" y="0" height="{appearence.Height.ToString(CultureInfo.InvariantCulture)}" width="2.5" stroke-width="0" fill="{appearence.SecondaryBackground}" />
-        <text x="{portBegin.ToString(CultureInfo.InvariantCulture)}" y="14" fill="{appearence.PrimaryForeground}">{this.Port}</text>
-        <text x="{versionBegin.ToString(CultureInfo.InvariantCulture)}" y="14" fill="{appearence.SecondaryForeground}">v{this.Version}</text>
+            return $@"<?xml version=""1.0"" encoding=""UTF-8"" standalone=""yes""?>
+<svg xmlns=""http://www.w3.org/2000/svg""
+    style=""shape-rendering: geometricPrecision; image-rendering: optimizeQuality; fill-rule: evenodd; clip-rule: evenodd""
+    width=""163""
+    height=""{appearence.Height}""
+    fill=""None"">
+    <g font-family=""{string.Join("","", appearence.FontFamily)}"" font-size=""{appearence.FontSize}"" fill=""#000000"">
+        <rect x=""{primaryBegin.ToString(CultureInfo.InvariantCulture)}"" y=""0"" height=""{appearence.Height.ToString(CultureInfo.InvariantCulture)}"" width=""{(primaryEnd - primaryBegin).ToString(CultureInfo.InvariantCulture)}"" rx=""2.5"" ry=""2.5"" stroke-width=""0"" fill=""{appearence.PrimaryBackground}"" />
+        <rect x=""{(primaryEnd - 2.5).ToString(CultureInfo.InvariantCulture)}"" y=""0"" height=""{appearence.Height.ToString(CultureInfo.InvariantCulture)}"" width=""2.5"" stroke-width=""0"" fill=""{appearence.PrimaryBackground}"" />
+        <rect x=""{primaryEnd.ToString(CultureInfo.InvariantCulture)}"" y=""0"" height=""{appearence.Height.ToString(CultureInfo.InvariantCulture)}"" width=""{(secondaryEnd - primaryEnd).ToString(CultureInfo.InvariantCulture)}"" rx=""2.5"" ry=""2.5"" stroke-width=""0"" fill=""{appearence.SecondaryBackground}"" />
+        <rect x=""{primaryEnd.ToString(CultureInfo.InvariantCulture)}"" y=""0"" height=""{appearence.Height.ToString(CultureInfo.InvariantCulture)}"" width=""2.5"" stroke-width=""0"" fill=""{appearence.SecondaryBackground}"" />
+        <text x=""{portBegin.ToString(CultureInfo.InvariantCulture)}"" y=""14"" fill=""{appearence.PrimaryForeground}"">{this.Port}</text>
+        <text x=""{versionBegin.ToString(CultureInfo.InvariantCulture)}"" y=""14"" fill=""{appearence.SecondaryForeground}"">v{this.Version}</text>
     </g>
     <g>{appearence.GetLogo(3, 2, 14)}</g>
 </svg>
-""";
+";
         }
 
         #region Private class methods
