@@ -73,6 +73,8 @@ namespace Visus.VcpkgStatus.Controllers {
 
                 var badge = new StatusBadge(port, portFile.Version);
                 retval = badge.ToSvg(this._appearenceOptions);
+
+                this._cache.Set(port, retval, this._cachingOptions);
             }
 
             return this.Content(retval, "image/svg+xml");

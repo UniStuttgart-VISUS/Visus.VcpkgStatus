@@ -98,7 +98,7 @@ namespace Visus.VcpkgStatus.DataModels {
         <text x=""{portBegin.ToString(CultureInfo.InvariantCulture)}"" y=""14"" fill=""{appearence.PrimaryForeground}"">{this.Port}</text>
         <text x=""{versionBegin.ToString(CultureInfo.InvariantCulture)}"" y=""14"" fill=""{appearence.SecondaryForeground}"">v{this.Version}</text>
     </g>
-    <g>{appearence.GetLogo(3, 2, 14)}</g>
+    <g>{appearence.GetLogo(3, (appearence.Height - 14) / 2, 14)}</g>
 </svg>
 ";
         }
